@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Practiceg17</string>
+    <string name="seniorsteps">SeniorSteps</string>
+    <string name="mohaamed_nahmed_nghjkl">Mohaamed Ahmed ghjkl</string>
+    <string name="skip">skip</string>
+    <string name="welcome">welcome</string>
+    <string name="do_you_have_account">Do you have Account?</string>
+    <string name="Sign_in_now">Signin now</string>
+    <string name="lets_go">Let\'s go</string>
+    <array name="gender">
+        <item>male</item>
+        <item>female</item>
+    </array>
+</resources>
