@@ -19,6 +19,31 @@ public class Splash extends AppCompatActivity {
     public void openRecyclerView(View v){
         startActivity(new Intent(Splash.this,ContactsListActivity.class));
     }
+    public void exitApp(View v){
+
+        final ConfirmationDialog confirmationDialog = new ConfirmationDialog();
+        confirmationDialog
+                .Message("Do you want to exit ? ")
+                .Title("Warning")
+                .PosText("yes")
+                .NegText("No")
+                .PosAction(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                })
+                .NegAction(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        confirmationDialog.dismiss();
+                    }
+                })
+                .show(getSupportFragmentManager(),"exit");
+
+
+
+    }
 
     @Override
     protected void onStart() {
@@ -51,6 +76,17 @@ public class Splash extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.e("lifeCycle","onDestroy");
+
+    }
+
+    public void openFragment(View view) {
+
+        startActivity(new Intent(Splash.this,FragmentsActivity.class));
+
+    }
+    public void openbottomnavigation(View view) {
+
+        startActivity(new Intent(Splash.this,BottomNavigationActivity.class));
 
     }
 }

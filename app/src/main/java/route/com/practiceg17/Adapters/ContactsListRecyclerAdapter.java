@@ -21,6 +21,22 @@ import route.com.practiceg17.R;
 public class ContactsListRecyclerAdapter extends RecyclerView.Adapter<ContactsListRecyclerAdapter.ViewHolder> {
 
     ArrayList<Contact> items;
+    OnItemClickListener onItemClickListener;
+    OnItemClickListener onImageClickListener;
+    OnItemClickListener onNameClickListener;
+
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public void setOnImageClickListener(OnItemClickListener onImageClickListener) {
+        this.onImageClickListener = onImageClickListener;
+    }
+
+    public void setOnNameClickListener(OnItemClickListener onNameClickListener) {
+        this.onNameClickListener = onNameClickListener;
+    }
 
     public ContactsListRecyclerAdapter(ArrayList<Contact> items) {
         this.items = items;
@@ -39,14 +55,30 @@ public class ContactsListRecyclerAdapter extends RecyclerView.Adapter<ContactsLi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
         //get data of postition
 
-        Contact contactItem= items.get(position);
+        final Contact contactItem= items.get(position);
 
         holder.name.setText(contactItem.getName());
         holder.phone.setText(contactItem.getPhone());
+
+        if(onNameClickListener!=null)
+          holder.name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onNameClickListener.onItemClick(position,contactItem);
+
+                }
+        });
+        if(onImageClickListener!=null)
+            holder.image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onImageClickListener.onItemClick(position,contactItem);
+            }
+        });
 //        holder.image.setText(contactItem.getPhone());
 
 
@@ -71,5 +103,9 @@ public class ContactsListRecyclerAdapter extends RecyclerView.Adapter<ContactsLi
 
         }
 
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick(int position,Contact contact);
     }
 }
